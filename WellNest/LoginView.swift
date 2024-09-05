@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @ObservedObject var viewModel: AppViewModel
     @State private var username = ""
     @State private var password = ""
     @State private var errorMessage = ""
@@ -34,13 +35,15 @@ struct LoginView: View {
     }
 
     func login() {
-        APIClient.shared.login(username: username, password: password) { result in
+        APIClient.shared.login(username: username.lowercased(), password: password) { result in
             switch result {
             case .success(let data):
                 if let accessToken = data["access"] as? String,
                    let refreshToken = data["refresh"] as? String {
                     TokenService.shared.saveTokens(accessToken: accessToken, refreshToken: refreshToken)
                     // Navigate to profile view
+                    viewModel.isAuthenticated = true
+                    
                 }
             case .failure(let error):
                 errorMessage = error.localizedDescription

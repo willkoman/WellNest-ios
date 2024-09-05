@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		027775A12C89648A00245000 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 027775A02C89648A00245000 /* KeychainAccess */; };
+		027775A42C89649900245000 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 027775A32C89649900245000 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		02932AD92C89326600B998F9 /* WellNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WellNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				027775A12C89648A00245000 /* KeychainAccess in Frameworks */,
+				027775A42C89649900245000 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +72,8 @@
 			);
 			name = WellNest;
 			packageProductDependencies = (
+				027775A02C89648A00245000 /* KeychainAccess */,
+				027775A32C89649900245000 /* Alamofire */,
 			);
 			productName = WellNest;
 			productReference = 02932AD92C89326600B998F9 /* WellNest.app */;
@@ -94,6 +103,10 @@
 			);
 			mainGroup = 02932AD02C89326600B998F9;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0277759F2C89648A00245000 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				027775A22C89649900245000 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 02932ADA2C89326600B998F9 /* Products */;
 			projectDirPath = "";
@@ -339,6 +352,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0277759F2C89648A00245000 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		027775A22C89649900245000 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		027775A02C89648A00245000 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0277759F2C89648A00245000 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		027775A32C89649900245000 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 027775A22C89649900245000 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02932AD12C89326600B998F9 /* Project object */;
 }

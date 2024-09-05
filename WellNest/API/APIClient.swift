@@ -7,7 +7,7 @@ class APIClient {
     // Function to login and retrieve JWT tokens
     func login(username: String, password: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
         let url = baseURL + "token/"
-        let parameters = ["username": username, "password": password]
+        let parameters = ["username": username.lowercased(), "password": password]
         
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
@@ -19,6 +19,9 @@ class APIClient {
                     }
                 case .failure(let error):
                     completion(.failure(error))
+                    //try logging out
+                    TokenService.shared.clearTokens()
+                    
                 }
             }
     }

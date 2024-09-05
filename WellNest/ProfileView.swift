@@ -155,7 +155,12 @@ struct ProfileView: View {
             ImagePicker(selectedImage: $selectedImage)
         }
         .onAppear {
-            viewModel.loadProfile()
+            do {
+                try viewModel.loadProfile()
+            } catch {
+                print("Failed to load profile: \(error.localizedDescription)")
+            }
+            
         }
         .padding()
     }

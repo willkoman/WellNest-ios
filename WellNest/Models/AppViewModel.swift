@@ -33,12 +33,20 @@ class AppViewModel: ObservableObject {
                         }
                     }
                 case .failure(let error):
-                    DispatchQueue.main.async {
-                        self.errorMessage = "Failed to load profile: \(error.localizedDescription)"
+                    if let statusCode = response.response?.statusCode, statusCode == 401 {
+                        // Token is invalid or expired, log out and return to login screen
+                        DispatchQueue.main.async {
+                            self.logout()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.errorMessage = "Failed to load profile: \(error.localizedDescription)"
+                        }
                     }
                 }
             }
     }
+
     
     func updateProfile(with image: UIImage?) {
         guard let profile = profile else { return }

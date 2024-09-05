@@ -216,6 +216,48 @@
 			<key>uniqueIdentifier</key>
 			<string>0F8AEAAB-01FE-41C6-B803-410FE7FE432A</string>
 		</dict>
+		<key>0FEB2AFC-7435-4B92-8DD1-4DD66840E87A</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>0FEB2AFC-7435-4B92-8DD1-4DD66840E87A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>6</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>WellNest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>WellNest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build WellNest</string>
+			<key>timeStartedRecording</key>
+			<real>747202696.28997898</real>
+			<key>timeStoppedRecording</key>
+			<real>747202698.04275095</real>
+			<key>title</key>
+			<string>Build WellNest</string>
+			<key>uniqueIdentifier</key>
+			<string>0FEB2AFC-7435-4B92-8DD1-4DD66840E87A</string>
+		</dict>
 		<key>1400F817-1CD5-450E-9EDB-12917E0A7E1F</key>
 		<dict>
 			<key>className</key>
@@ -257,6 +299,48 @@
 			<string>Build WellNest</string>
 			<key>uniqueIdentifier</key>
 			<string>1400F817-1CD5-450E-9EDB-12917E0A7E1F</string>
+		</dict>
+		<key>151A91BC-9CE1-4E10-95A2-99AD3F4E25AE</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>151A91BC-9CE1-4E10-95A2-99AD3F4E25AE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>4</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>WellNest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>WellNest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build WellNest</string>
+			<key>timeStartedRecording</key>
+			<real>747202412.10971701</real>
+			<key>timeStoppedRecording</key>
+			<real>747202413.27839506</real>
+			<key>title</key>
+			<string>Build WellNest</string>
+			<key>uniqueIdentifier</key>
+			<string>151A91BC-9CE1-4E10-95A2-99AD3F4E25AE</string>
 		</dict>
 		<key>18CEB0D2-1484-4507-9B3A-0F18ED0FEEBF</key>
 		<dict>
@@ -341,6 +425,48 @@
 			<string>Build WellNest</string>
 			<key>uniqueIdentifier</key>
 			<string>1F0FC65B-C59F-4AD4-B70E-A8D16C780AC6</string>
+		</dict>
+		<key>21C877CC-4471-491A-8556-EFF2E0CF006B</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>21C877CC-4471-491A-8556-EFF2E0CF006B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>4</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>WellNest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>WellNest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build WellNest</string>
+			<key>timeStartedRecording</key>
+			<real>747202351.282107</real>
+			<key>timeStoppedRecording</key>
+			<real>747202354.461887</real>
+			<key>title</key>
+			<string>Build WellNest</string>
+			<key>uniqueIdentifier</key>
+			<string>21C877CC-4471-491A-8556-EFF2E0CF006B</string>
 		</dict>
 		<key>28F1A354-8AB5-4E49-AC22-2867F0D237D9</key>
 		<dict>

@@ -21,6 +21,7 @@ class ProfileViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.errorMessage = error.localizedDescription
+                
                 }
             }
         }

@@ -9,6 +9,14 @@ class TokenService {
         keychain["refreshToken"] = refreshToken
     }
 
+    func saveAccessToken(_ accessToken: String) {
+        keychain["accessToken"] = accessToken
+    }
+    
+    func saveRefreshToken(_ refreshToken: String) {
+        keychain["refreshToken"] = refreshToken
+    }
+    
     func getAccessToken() -> String? {
         return keychain["accessToken"]
     }

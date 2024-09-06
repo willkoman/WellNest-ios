@@ -16,37 +16,31 @@ class AppViewModel: ObservableObject {
         }
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
-        let url = baseURL + "profiles/"
+        let url = baseURL + "profiles/me/"  // Use the /me/ endpoint
         
         AF.request(url, method: .get, headers: headers)
             .validate()
-            .responseDecodable(of: [Profile].self) { response in
+            .responseDecodable(of: Profile.self) { response in
                 switch response.result {
-                case .success(let profiles):
-                    if let profile = profiles.first {
-                        DispatchQueue.main.async {
-                            self.profile = profile
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.errorMessage = "No profile data found"
-                        }
+                case .success(let profile):
+                    DispatchQueue.main.async {
+                        self.profile = profile
+                        self.isAuthenticated = true
+                        print("Profile loaded successfully")
                     }
                 case .failure(let error):
                     if let statusCode = response.response?.statusCode, statusCode == 401 {
-                        // Token is invalid or expired, log out and return to login screen
-                        DispatchQueue.main.async {
-                            self.logout()
-                        }
+                        print("Token expired, refreshing...")
+                        self.refreshTokenAndLoadProfile()
                     } else {
                         DispatchQueue.main.async {
                             self.errorMessage = "Failed to load profile: \(error.localizedDescription)"
+                            self.isAuthenticated = false
                         }
                     }
                 }
             }
     }
-
     
     func updateProfile(with image: UIImage?) {
         guard let profile = profile else { return }
@@ -55,13 +49,12 @@ class AppViewModel: ObservableObject {
             return
         }
         
-        let profileID = profile.id
-        let url = baseURL + "profiles/\(profileID)/"
+        let url = baseURL + "profiles/me/"  // Update the current user's profile using /me/
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        var profileData: [String: Any] = [
+        let profileData: [String: Any] = [
             "bio": profile.bio,
-            "goals": profile.goals
+            "goals": profile.goals,
         ]
         
         AF.upload(multipartFormData: { multipartFormData in
@@ -86,6 +79,37 @@ class AppViewModel: ObservableObject {
             }
         }
     }
+
+    
+    func refreshTokenAndLoadProfile() {
+        guard let refreshToken = TokenService.shared.getRefreshToken() else {
+            DispatchQueue.main.async {
+                self.isAuthenticated = false
+            }
+            return
+        }
+        
+        let url = baseURL + "token/refresh/"
+        let parameters: [String: String] = ["refresh": refreshToken]
+        
+        AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default)
+            .validate()
+            .responseDecodable(of: [String: String].self) { response in
+                switch response.result {
+                case .success(let data):
+                    if let accessToken = data["access"] {
+                        TokenService.shared.saveAccessToken(accessToken)
+                        self.loadProfile()  // Retry loading the profile with the new access token
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.errorMessage = "Failed to refresh token: \(error.localizedDescription)"
+                        self.isAuthenticated = false
+                    }
+                }
+            }
+    }
+    
     
     func logout() {
         TokenService.shared.clearTokens()
@@ -95,28 +119,34 @@ class AppViewModel: ObservableObject {
     
     func checkAuthentication() {
         if let _ = TokenService.shared.getAccessToken() {
-            isAuthenticated = true
+            // If access token is available, try loading the profile
+            loadProfile()
+        } else if let _ = TokenService.shared.getRefreshToken() {
+            // If only refresh token is available, try refreshing access token
+            refreshTokenAndLoadProfile()
         } else {
+            // No tokens available, user needs to log in
             isAuthenticated = false
         }
     }
-    
 }
 
+import SwiftUI
+
 struct RootView: View {
-    @StateObject var viewModel = AppViewModel()  // Create the AppViewModel
+    @StateObject var viewModel = AppViewModel()  // Initialize the AppViewModel
+    @EnvironmentObject var themeManager: ThemeManager  // Access the theme manager
     
     var body: some View {
         Group {
             if viewModel.isAuthenticated {
-                ProfileView(viewModel: viewModel)  // Pass the viewModel to ProfileView
+                MainTabView(viewModel: viewModel)  // Navigate to the MainTabView
             } else {
-                LoginView(viewModel: viewModel)    // Pass the viewModel to LoginView
+                LoginView(viewModel: viewModel)
             }
         }
         .onAppear {
-            viewModel.checkAuthentication()  // Check authentication when the view appears
+            viewModel.checkAuthentication()  // Check if the user is authenticated
         }
     }
 }
-
